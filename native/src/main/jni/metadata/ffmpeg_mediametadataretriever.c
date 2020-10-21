@@ -149,6 +149,10 @@ int stream_component_open(State *s, int stream_index) {
 			  	printf("avcodec_open2() failed\n");
 				return FAILURE;
 			}
+			
+			if(s->video_st->codec->pix_fmt==-1) {
+                		s->video_st->codec->pix_fmt=0;
+			}
 
 		    s->sws_ctx = sws_getContext(s->video_st->codec->width,
 		    		s->video_st->codec->height,
